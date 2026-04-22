@@ -30,7 +30,7 @@ Version 0.1.0 turns the current package scaffold into a dependable personal stat
 Plans:
 - [x] 01-01: Establish the package layout, public exports, and module boundaries for current and future analysis domains.
 - [x] 01-02: Implement shared validation utilities, error conventions, and result container patterns.
-- [ ] 01-03: Add test scaffolding, smoke tests, GitHub Actions-based PyPI publishing, and contributor-oriented extension/install guidance.
+- [x] 01-03: Add test scaffolding, smoke tests, GitHub Actions-based PyPI publishing, and contributor-oriented extension/install guidance.
 
 ### Phase 2: Core Statistical Analysis
 **Goal**: Deliver the first real analysis capabilities on top of the infrastructure layer: data preparation, descriptive summaries, and common classical hypothesis tests.
@@ -69,6 +69,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Library Infrastructure | 2/3 | In Progress|  |
+| 1. Library Infrastructure | 3/3 | Awaiting human verification |  |
 | 2. Core Statistical Analysis | 0/3 | Not started | - |
 | 3. Modeling and Workflow Delivery | 0/3 | Not started | - |
