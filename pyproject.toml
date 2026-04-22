@@ -1,7 +1,11 @@
 [project]
 name = "kai_statistics"
 version = "0.1.0"
+authors = [
+  { name="Kai Hsieh", email="shadowkai0121@gmail.com" },
+]
 description = "My statistical research toolbox"
+readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
   "numpy>=2.0",
@@ -14,6 +18,16 @@ dependencies = [
   "scikit-learn>=1.5",
   "gdown>=5.2",
 ]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[build-system]
+requires = ["uv_build >= 0.11.7, <0.12.0"]
+build-backend = "uv_build"
 
 [tool.uv]
 package = true
+
+[project.urls]
+Homepage = "https://github.com/shadowkai0121/kai_statistics"
+Issues = "https://github.com/shadowkai0121/kai_statistics/issues"
