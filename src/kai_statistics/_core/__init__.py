@@ -6,6 +6,7 @@ from .errors import (
     MissingValueHandlingError,
     ResultContractError,
 )
+from .results import AnalysisResult, ResultCaveat
 from .validation import (
     ensure_columns_present,
     ensure_dataframe,
@@ -13,9 +14,11 @@ from .validation import (
 )
 
 __all__ = [
+    "AnalysisResult",
     "InputValidationError",
     "KaiStatisticsError",
     "MissingValueHandlingError",
+    "ResultCaveat",
     "ResultContractError",
     "ensure_columns_present",
     "ensure_dataframe",
