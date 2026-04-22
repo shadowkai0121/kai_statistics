@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Hashable, Iterable
 
 import pandas as pd
 
@@ -46,7 +46,14 @@ def ensure_columns_present(
                 "`columns` must be an iterable of required column names."
             ) from exc
 
-    missing_columns = [column for column in required_columns if column not in validated.columns]
+    if not all(isinstance(column, Hashable) for column in required_columns):
+        raise InputValidationError(
+            "`columns` must contain hashable column labels compatible with the dataframe."
+        )
+
+    missing_columns = [
+        column for column in required_columns if column not in validated.columns
+    ]
     if missing_columns:
         missing_display = ", ".join(repr(column) for column in missing_columns)
         raise InputValidationError(
@@ -58,11 +65,27 @@ def ensure_columns_present(
 
 def require_explicit_na_policy(
     policy: str | None,
-    allowed: tuple[str, ...] = ("drop", "keep", "error"),
+    allowed: Iterable[str] = ("drop", "keep", "error"),
 ) -> str:
     """Validate explicit missing-value policy selection for future helpers."""
 
-    allowed_policies = tuple(allowed)
+    if isinstance(allowed, str):
+        raise MissingValueHandlingError(
+            "`allowed` must be an iterable of policy names, not a single string."
+        )
+
+    try:
+        allowed_policies = tuple(allowed)
+    except TypeError as exc:
+        raise MissingValueHandlingError(
+            "`allowed` must be an iterable of policy names."
+        ) from exc
+
+    if not allowed_policies or any(not isinstance(option, str) for option in allowed_policies):
+        raise MissingValueHandlingError(
+            "`allowed` must contain one or more string policy names."
+        )
+
     allowed_display = ", ".join(repr(option) for option in allowed_policies)
 
     if policy is None:

@@ -44,6 +44,15 @@ def test_ensure_columns_present_raises_when_required_column_is_missing() -> None
         ensure_columns_present(dataframe, ["group"])
 
 
+def test_ensure_columns_present_raises_for_unhashable_column_labels() -> None:
+    """Column specifications must stay compatible with pandas label lookup."""
+
+    dataframe = pd.DataFrame({"value": [1, 2]})
+
+    with pytest.raises(InputValidationError, match="hashable column labels"):
+        ensure_columns_present(dataframe, [["value"]])
+
+
 def test_require_explicit_na_policy_returns_supported_policy() -> None:
     """Supported missing-value policies should pass through unchanged."""
 
@@ -65,3 +74,13 @@ def test_require_explicit_na_policy_raises_for_unsupported_policy() -> None:
 
     with pytest.raises(MissingValueHandlingError, match="Allowed values are"):
         require_explicit_na_policy("impute")
+
+
+def test_require_explicit_na_policy_raises_for_string_allowed_container() -> None:
+    """Allowed policies must be passed as a real iterable of policy names."""
+
+    with pytest.raises(
+        MissingValueHandlingError,
+        match="must be an iterable of policy names, not a single string",
+    ):
+        require_explicit_na_policy("drop", allowed="drop")
