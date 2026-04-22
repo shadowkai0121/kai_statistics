@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-04-22T05:11:02.894Z"
-last_activity: 2026-04-22 -- Completed 01-01 plan
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-04-22T05:20:06.138Z"
+last_activity: 2026-04-22 -- Completed 01-02 plan
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
-  percent: 33
+  completed_plans: 2
+  percent: 67
 ---
 
 # Project State
@@ -26,17 +26,17 @@ See: .planning/PROJECT.md (updated 2026-04-22)
 ## Current Position
 
 Phase: 1 (library-infrastructure) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
-Last activity: 2026-04-22 -- Completed 01-01 plan
+Last activity: 2026-04-22 -- Completed 01-02 plan
 
-Progress: [███░░░░░░░] 33%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 1
+- Total plans completed: 2
 - Average duration: 4 min
 - Total execution time: 0.1 hours
 
@@ -44,11 +44,11 @@ Progress: [███░░░░░░░] 33%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01 | 1 | 4 min | 4 min |
+| 01 | 2 | 8 min | 4 min |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min)
+- Last 5 plans: 01-01 (4 min), 01-02 (4 min)
 - Trend: Stable
 
 ## Accumulated Context
@@ -64,6 +64,8 @@ Recent decisions affecting current work:
 - [Init]: Prefer wrappers around scientific Python libraries over custom statistical reimplementation.
 - [Phase 01]: Keep the package root limited to explicit Phase 1 boundary exports plus the smoke helper. — Avoid promising helpers that do not exist yet.
 - [Phase 01]: Keep io, profiling, descriptive, and testing as logic-free boundary modules with empty exports. — Preserve a stable import surface without shipping placeholder APIs.
+- [Phase 01]: Kept _core internal-only and avoided package-root re-exports. — Preserve the Phase 1 boundary so internal shared primitives do not become an accidental public API contract.
+- [Phase 01]: Validation helpers return validated inputs and policies for one shared fail-fast path. — Future helpers can reuse the same dataframe and missing-value enforcement flow without relying on caller order.
 
 ### Pending Todos
 
@@ -82,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-22T05:11:02.886Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-04-22T05:20:06.132Z
+Stopped at: Completed 01-02-PLAN.md
 Resume file: None
