@@ -1,0 +1,40 @@
+{
+  "model_profile": "balanced",
+  "mode": "yolo",
+  "granularity": "coarse",
+  "project_code": "KST",
+  "response_language": "Traditional Chinese",
+  "planning": {
+    "commit_docs": true,
+    "search_gitignored": false
+  },
+  "git": {
+    "branching_strategy": "none",
+    "base_branch": "master"
+  },
+  "workflow": {
+    "research": false,
+    "plan_check": true,
+    "verifier": true,
+    "nyquist_validation": true,
+    "auto_advance": false,
+    "discuss_mode": "discuss",
+    "research_before_questions": false,
+    "text_mode": true,
+    "use_worktrees": false,
+    "code_review": true,
+    "code_review_depth": "standard"
+  },
+  "parallelization": {
+    "enabled": true,
+    "plan_level": true,
+    "task_level": false,
+    "skip_checkpoints": true,
+    "max_concurrent_agents": 3,
+    "min_plans_for_parallel": 2
+  },
+  "hooks": {
+    "context_warnings": true
+  },
+  "claude_md_path": "./AGENTS.md"
+}
