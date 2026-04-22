@@ -28,6 +28,15 @@ build-backend = "uv_build"
 [tool.uv]
 package = true
 
+[dependency-groups]
+dev = [
+  "pytest>=8.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
 [project.urls]
 Homepage = "https://github.com/shadowkai0121/kai_statistics"
 Issues = "https://github.com/shadowkai0121/kai_statistics/issues"
