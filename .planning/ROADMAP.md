@@ -2,7 +2,7 @@
 
 ## Overview
 
-Version 0.1.0 turns the current package scaffold into a dependable personal statistics toolbox. The roadmap is intentionally compressed into 3 phases so the project can stay focused: first build the package infrastructure, then deliver core analysis features, and finally add modeling, visualization, exports, and end-to-end workflow examples.
+Version 0.1.0 turns the current package scaffold into a dependable personal statistics toolbox. The roadmap is intentionally compressed into 3 phases so the project can stay focused: first build the package and release infrastructure, then deliver core analysis features, and finally add modeling, visualization, exports, and end-to-end workflow examples.
 
 ## Phases
 
@@ -10,26 +10,27 @@ Version 0.1.0 turns the current package scaffold into a dependable personal stat
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions if needed later
 
-- [ ] **Phase 1: Library Infrastructure** - Establish the package surface, shared conventions, testing scaffolding, and extension patterns.
+- [ ] **Phase 1: Library Infrastructure** - Establish the package surface, shared conventions, testing scaffolding, release automation, and extension patterns.
 - [ ] **Phase 2: Core Statistical Analysis** - Add data preparation, descriptive analysis, and classical hypothesis testing on top of the shared foundations.
 - [ ] **Phase 3: Modeling and Workflow Delivery** - Add regression helpers, reusable visual outputs, exports, and documented examples.
 
 ## Phase Details
 
 ### Phase 1: Library Infrastructure
-**Goal**: Build the real module boundaries for `kai_statistics`, define consistent helper conventions, and create the testing and extension scaffolding the rest of the toolbox will rely on.
+**Goal**: Build the real module boundaries for `kai_statistics`, define consistent helper conventions, and create the testing, release, and extension scaffolding the rest of the toolbox will rely on.
 **Depends on**: Nothing (first phase)
-**Requirements**: INFRA-01, INFRA-02, INFRA-03, INFRA-04
+**Requirements**: INFRA-01, INFRA-02, INFRA-03, INFRA-04, INFRA-05
 **Success Criteria** (what must be TRUE):
   1. User can import the package and discover stable module boundaries for future analysis helpers.
   2. Implemented helpers can share input validation, error conventions, and result-object patterns instead of ad hoc logic.
   3. User can run a baseline automated test suite and follow a documented pattern for extending the package.
+  4. User can publish the package through GitHub Actions to PyPI and install released versions from Jupyter notebook environments.
 **Plans**: 3 plans
 
 Plans:
 - [ ] 01-01: Establish the package layout, public exports, and module boundaries for current and future analysis domains.
 - [ ] 01-02: Implement shared validation utilities, error conventions, and result container patterns.
-- [ ] 01-03: Add test scaffolding, smoke tests, and contributor-oriented extension guidance.
+- [ ] 01-03: Add test scaffolding, smoke tests, GitHub Actions-based PyPI publishing, and contributor-oriented extension/install guidance.
 
 ### Phase 2: Core Statistical Analysis
 **Goal**: Deliver the first real analysis capabilities on top of the infrastructure layer: data preparation, descriptive summaries, and common classical hypothesis tests.

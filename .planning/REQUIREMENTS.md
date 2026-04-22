@@ -11,6 +11,7 @@
 - [ ] **INFRA-02**: User can call implemented helpers that share consistent validation, error handling, and result-object conventions.
 - [ ] **INFRA-03**: User can run automated tests and smoke checks that verify package imports plus implemented helper contracts.
 - [ ] **INFRA-04**: User can extend the toolbox by following a documented module layout and helper pattern.
+- [ ] **INFRA-05**: User can publish `kai_statistics` to PyPI through GitHub Actions and install released versions from Jupyter notebook environments.
 
 ### Data Preparation
 
@@ -71,6 +72,7 @@
 | INFRA-02 | Phase 1 | Pending |
 | INFRA-03 | Phase 1 | Pending |
 | INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
 | DATA-01 | Phase 2 | Pending |
 | DATA-02 | Phase 2 | Pending |
 | DATA-03 | Phase 2 | Pending |
@@ -88,10 +90,10 @@
 | VIZ-03 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 19 total
-- Mapped to phases: 19
+- v1 requirements: 20 total
+- Mapped to phases: 20
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-22*
-*Last updated: 2026-04-22 after initial definition*
+*Last updated: 2026-04-22 after Phase 1 release-scope update*

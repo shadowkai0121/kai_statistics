@@ -1,0 +1,224 @@
+{
+  "phase": "1",
+  "phase_name": "Library Infrastructure",
+  "timestamp": "2026-04-22T11:39:01.1459447+08:00",
+  "areas_completed": [
+    "Module boundaries and import style",
+    "Public API style",
+    "Validation, error, and result conventions",
+    "Testing and extension scaffolding"
+  ],
+  "areas_remaining": [],
+  "decisions": {
+    "Module boundaries and import style": [
+      {
+        "question": "How much of the future domain skeleton should Phase 1 create?",
+        "answer": "Only establish the shared infrastructure needed for this phase; other domains can emerge in later phases.",
+        "options_presented": [
+          "Only the shared infrastructure needed now",
+          "Create all v0.1.0 domain packages with placeholders",
+          "Create all domain directories with package stubs but no fake helpers"
+        ]
+      },
+      {
+        "question": "What role should kai_statistics/__init__.py play?",
+        "answer": "Use the top-level package as a convenience entry point and re-export future common helpers.",
+        "options_presented": [
+          "Thin metadata-only package root",
+          "Top-level re-export of common helpers",
+          "Mixed approach"
+        ]
+      },
+      {
+        "question": "Where should shared infrastructure live?",
+        "answer": "Prefer internal shared namespaces rather than promising shared utilities as part of the public API.",
+        "options_presented": [
+          "Public validation/results/errors modules",
+          "Internal _core or _shared modules",
+          "Put everything in utils"
+        ]
+      },
+      {
+        "question": "How should new helpers be organized at first?",
+        "answer": "Start with a few larger module files and split later once the surface area is clearer.",
+        "options_presented": [
+          "One helper area per module file",
+          "Fewer larger files first",
+          "Add contrib or experimental areas"
+        ]
+      },
+      {
+        "question": "What import experience matters most?",
+        "answer": "The package should feel natural as `import kai_statistics as ks`.",
+        "options_presented": [
+          "Convenient package alias import",
+          "Submodule-first import style",
+          "No preference"
+        ]
+      }
+    ],
+    "Public API style": [
+      {
+        "question": "What calling style should helpers use?",
+        "answer": "Prefer short top-level function calls such as `ks.describe(df)` and `ks.ttest(...)`.",
+        "options_presented": [
+          "Short function-first API",
+          "Explicit submodule namespace API",
+          "Mixed approach"
+        ]
+      },
+      {
+        "question": "What argument style should helpers prefer?",
+        "answer": "Helpers should accept pandas objects and column-name strings directly.",
+        "options_presented": [
+          "Direct pandas objects and column names",
+          "More explicit structured config objects",
+          "Mixed approach"
+        ]
+      },
+      {
+        "question": "How should helper outputs be shaped?",
+        "answer": "Return pandas objects directly whenever practical.",
+        "options_presented": [
+          "Prefer pandas-native outputs",
+          "Always wrap in custom result objects",
+          "Mixed outputs with wrapper metadata"
+        ]
+      },
+      {
+        "question": "What naming style should helper APIs use?",
+        "answer": "Use short names where they stay clear, but allow longer names when needed to avoid ambiguity.",
+        "options_presented": [
+          "Very short names",
+          "Fully explicit names",
+          "Short-by-default, explicit when needed"
+        ]
+      },
+      {
+        "question": "How opinionated should defaults be?",
+        "answer": "Keep defaults conservative; do not hide important statistical assumptions behind aggressive defaults.",
+        "options_presented": [
+          "Aggressive convenience defaults",
+          "Conservative defaults",
+          "Balanced defaults"
+        ]
+      }
+    ],
+    "Validation, error, and result conventions": [
+      {
+        "question": "How should helpers respond to missing columns, wrong types, or invalid shapes?",
+        "answer": "Use shared validation up front and fail fast with clear errors.",
+        "options_presented": [
+          "Shared validation with fail-fast errors",
+          "Try coercion first, then error",
+          "Best-effort warnings"
+        ]
+      },
+      {
+        "question": "What should the default missing-value policy be?",
+        "answer": "Do not silently clean missing values; the caller should choose the handling rule explicitly.",
+        "options_presented": [
+          "Require explicit missing-value handling",
+          "Use conservative automatic defaults",
+          "Let helpers auto-repair"
+        ]
+      },
+      {
+        "question": "What error type strategy should the package use?",
+        "answer": "Define a stable package-level error base such as `KaiStatisticsError`, with specific subclasses as needed.",
+        "options_presented": [
+          "Custom package error hierarchy",
+          "Mostly built-in Python errors",
+          "Mix built-in and raw downstream library errors"
+        ]
+      },
+      {
+        "question": "How should helpers expose metadata when the main result is pandas-native?",
+        "answer": "Return pandas objects directly for simple cases, but use lightweight result objects for multi-part analyses that need extra metadata.",
+        "options_presented": [
+          "Always return pandas only",
+          "Attach metadata into pandas attrs",
+          "Use pandas for simple cases and lightweight result objects when needed"
+        ]
+      },
+      {
+        "question": "How should helpers handle risky-but-not-invalid data situations?",
+        "answer": "Allow execution to continue, but surface clear warnings or caveats for conditions such as small samples or unstable assumptions.",
+        "options_presented": [
+          "Raise immediately",
+          "Proceed with explicit warnings",
+          "Continue silently"
+        ]
+      }
+    ],
+    "Testing and extension scaffolding": [
+      {
+        "question": "What test runner should Phase 1 standardize on?",
+        "answer": "Use `pytest` with `uv run pytest` as the standard test entry point.",
+        "options_presented": [
+          "pytest via uv",
+          "unittest",
+          "No strongly preferred runner"
+        ]
+      },
+      {
+        "question": "How should the test directory be organized?",
+        "answer": "Use a top-level `tests/` directory that mirrors the package structure.",
+        "options_presented": [
+          "Top-level tests/ mirroring src layout",
+          "Tests colocated with modules",
+          "Single smoke-test file first"
+        ]
+      },
+      {
+        "question": "What baseline test coverage should Phase 1 include?",
+        "answer": "Limit the initial baseline to import and smoke tests.",
+        "options_presented": [
+          "Import and smoke tests only",
+          "Smoke tests plus shared-validation and result-contract tests",
+          "Also scaffold future Phase 2 helper tests"
+        ]
+      },
+      {
+        "question": "Where should extension guidance live?",
+        "answer": "Put contributor and extension guidance into a dedicated document, with the README staying lightweight.",
+        "options_presented": [
+          "Dedicated contributor/extension guide",
+          "Put everything in README",
+          "No written guidance yet"
+        ]
+      },
+      {
+        "question": "How much helper-template support should Phase 1 provide?",
+        "answer": "Provide written conventions rather than a copy-paste module/test template or generator.",
+        "options_presented": [
+          "Module/test template plus checklist",
+          "Written conventions only",
+          "Scaffold script"
+        ]
+      },
+      {
+        "question": "Should Phase 1 include GitHub Actions-based PyPI publishing for notebook installation?",
+        "answer": "Yes. Phase 1 should include a GitHub Actions workflow that publishes to PyPI so released versions can be installed from Jupyter notebook environments.",
+        "options_presented": [
+          "Keep GitHub Actions publishing deferred",
+          "Fold GitHub Actions PyPI publishing into Phase 1"
+        ]
+      }
+    ]
+  },
+  "deferred_ideas": [],
+  "canonical_refs": [
+    ".planning/ROADMAP.md",
+    ".planning/PROJECT.md",
+    ".planning/REQUIREMENTS.md",
+    ".planning/STATE.md",
+    ".planning/codebase/ARCHITECTURE.md",
+    ".planning/codebase/CONVENTIONS.md",
+    ".planning/codebase/STACK.md",
+    ".planning/codebase/STRUCTURE.md",
+    ".planning/codebase/TESTING.md",
+    "pyproject.toml",
+    "src/kai_statistics/__init__.py"
+  ]
+}
