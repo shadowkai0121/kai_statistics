@@ -1,8 +1,11 @@
-"""kai_statistics package."""
+"""Notebook-friendly public package surface for kai_statistics."""
 
-__all__ = []
+from . import descriptive, io, profiling, testing
 
-__version__ = "0.0.0"
+__version__ = "0.1.0"
+
+__all__ = ["__version__", "descriptive", "io", "profiling", "testing"]
+
 
 def _hello():
     """Small helper to verify package import."""
